@@ -1,0 +1,6 @@
+1 ============================// Khởi tạo project blank
+npx create-expo-app my-app --template blank
+
+2 ============================// Cài đặt thư viện React navigation - https://reactnavigation.org
+npm install @react-navigation/bottom-tabs
+npx expo install react-native-screens react-native-safe-area-context
