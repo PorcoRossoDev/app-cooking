@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { COLORS } from './contains';
 
 function HomeScreen() {
   return (
@@ -34,12 +35,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={({ route }) => ({
-          
+        initialRouteName='Home'
+        screenOptions={({ route }) => ({  
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
-            
             switch (route.name) {
               case 'Home':
                 iconName = focused
@@ -60,14 +59,21 @@ export default function App() {
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
-
+          tabBarActiveTintColor: COLORS.second,
+          tabBarInactiveTintColor: COLORS.second,
+          tabBarStyle: { 
+            backgroundColor: COLORS.primary,
+            height: 65,
+            paddingBottom: 10
+          },
+          tabBarLabelStyle: {
+            fontSize: 13
+          },
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Seen" component={SeenScreen} />
-        <Tab.Screen name="Favorite" component={FavoriteScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Trang chủ'}} />
+        <Tab.Screen name="Seen" component={SeenScreen} options={{ title: 'Đã xem'}} />
+        <Tab.Screen name="Favorite" component={FavoriteScreen} options={{ title: 'Yêu thích'}} />
       </Tab.Navigator>
     </NavigationContainer>
   );
