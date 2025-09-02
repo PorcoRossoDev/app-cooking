@@ -8,10 +8,9 @@ const styles = StyleSheet.create({
         paddingVertical: 25,
     },
     list: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-    }
+        flex: 1,
+        justifyContent: 'space-between', // tạo khoảng trống giữa 2 cột
+    },
 })
 
 export default styles

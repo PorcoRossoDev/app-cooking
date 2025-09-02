@@ -2,13 +2,13 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './style'
 
-const Category = ({ navigation }) => {  
+const Category = ({ title, thumb, onPress }) => {  
   const image = require('../../assets/product.jpg')
   return (
     <View style={styles.item}>
-        <TouchableOpacity>
-          <Image source={image} style={styles.image} />
-          <Text style={styles.text}>Cillum tempor aute sint eli. tempor</Text>
+        <TouchableOpacity onPress={onPress}>
+          <Image source={thumb} style={styles.image} />
+          <Text style={styles.text}>{title}</Text>
         </TouchableOpacity>
     </View>
   )
