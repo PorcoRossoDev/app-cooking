@@ -6,8 +6,6 @@ import { COLORS } from '../../contains';
 import Icon from '../Icon';
 
 const FlatCategory = ({ title, thumb, favorite, view, onPress }) => {  
-  const image = require('../../assets/product.jpg')
-
   return (
     <View style={styles.item}>
         <TouchableOpacity onPress={onPress}>
@@ -17,8 +15,12 @@ const FlatCategory = ({ title, thumb, favorite, view, onPress }) => {
           <Text style={styles.text}>{title}</Text>
         </TouchableOpacity>
         <View style={styles.action}>
-          <Icon icon={'heart'} number={favorite} style={styles.icon} />
-          <Icon icon={'eye'} number={view} style={styles.icon}/>
+          <View>
+            <Icon icon={'heart'} number={favorite} style={styles.icon} />
+          </View>
+          <View>
+            <Icon icon={'eye'} number={view} style={styles.icon}/>
+          </View>
         </View>
     </View>
   )
