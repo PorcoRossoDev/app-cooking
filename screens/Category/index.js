@@ -19,7 +19,8 @@ const CategoryScreen = ({ navigation, route }) => {
                 onPress={
                     () => {
                         navigation.push('ProductScreen', {
-                            
+                            productID: item.id,
+                            productTitle: item.title
                         })
                     }
                 }

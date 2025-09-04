@@ -18,8 +18,8 @@ const HomeStackScreen = () => {
       }}
     >
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Món ăn ngon' }} />
-      <HomeStack.Screen name="CategoryScreen" component={CategoryScreen} options={{ title: 'Danh sách sản phẩm' }} />
-      <HomeStack.Screen name="ProductScreen" component={ProductScreen} options={{ title: 'Chi tiết sản phẩm' }} />
+      <HomeStack.Screen name="CategoryScreen" component={CategoryScreen} options={({route}) => ({ title: route.params.categoryTitle })} />
+      <HomeStack.Screen name="ProductScreen" component={ProductScreen} options={({route}) => ({ title: route.params.productTitle })} />
     </HomeStack.Navigator>
   );
 }

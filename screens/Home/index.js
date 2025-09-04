@@ -14,7 +14,7 @@ const HomeScreen = ({ navigation }) => {
                 onPress={() => {
                     navigation.push('CategoryScreen', {
                         categoryID: item.id,
-                        categoryTitile: item.title
+                        categoryTitle: item.title
                     })
                 }}
             />
@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.list}>r
+            <View style={styles.list}>
                 <FlatList
                     data={CATEGORIES}
                     keyExtractor={item => item.id}
