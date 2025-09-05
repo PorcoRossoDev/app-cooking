@@ -1,7 +1,10 @@
-1 ============================// Khởi tạo project blank
+#1 ============================// Khởi tạo project blank
 npx create-expo-app my-app --template blank
 
-2 ============================// Cài đặt thư viện React navigation - https://reactnavigation.org
+#2 ============================// Cài đặt thư viện React navigation - https://reactnavigation.org
 npm install @react-navigation/bottom-tabs
 npx expo install react-native-screens react-native-safe-area-context
 npx expo install @react-native-masked-view/masked-view
+
+#3 ============================// Sử dụng cho Redux toolkit
+npm install @reduxjs/toolkit react-redux
