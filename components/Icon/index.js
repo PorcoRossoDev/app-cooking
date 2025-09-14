@@ -7,10 +7,10 @@ import { COLORS } from '../../contains'
 const Icon = ({ icon, number }) => {  
   return (
     <View>
-      <TouchableOpacity style={styles.actionBtn}>
+        <View style={styles.actionBtn}>
             <Ionicons name={icon} size={30} color={COLORS.icon} />
             <Text style={styles.number}>{number}</Text>
-        </TouchableOpacity>
+        </View>
     </View>
   )
 }

@@ -1,24 +1,49 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, TouchableOpacity, Image, ScrollView, ImageBackground  } from 'react-native'
 import { Icon } from '../../components'
+import { useSelector, useDispatch } from 'react-redux'
+import { addViewed } from '../../store/slices/viewed'
+import { PRODUCTS } from '../../data'
+import { toggleFavorite } from '../../store/slices/favorite'
 import styles from './style'
 
-const ProductScreen = ({ navigation }) => {
-    const image = require('../../assets/product.jpg')
+const ProductScreen = ({ navigation, route }) => {
+
+    const dispatch = useDispatch()
+    const { productID } = route.params
+    const product = PRODUCTS.find(item => item.id == productID)
+    const image = product ? product.thumb : null
     const goBack = () => {
         navigation.pop()
     }
+    const viewedID = useSelector(state => state.viewed.items)
+    const favoriteID = useSelector(state => state.favorite.items)
+    useEffect(() => {
+        dispatch(addViewed({id:productID}))
+    }, [productID])
+
+    const isFavorite = favoriteID.includes(productID) ? true : false
+    const isViewed = viewedID.includes(productID) ? true : false
+    const totalFavorite = isFavorite ? product.favorite + 1 : product.favorite
+    const totalViewed = isViewed ? product.view+ 1 : product.view
+    const iconFavorite = isFavorite ? 'heart' : 'heart-outline'
+    const iconViewed = isViewed ? 'eye' : 'eye-outline'
+
+    const addFavorite = () => {
+        dispatch(toggleFavorite({id:productID}))
+    }
+
     return (
         <ScrollView>
             <View style={styles.container}>
                 <View style={styles.boxTop}>
                     <Image source={image} style={styles.imageTop} />
                     <View style={styles.action}>
-                        <View style={[styles.icon, styles.iconLeft]}>
-                            <Icon icon={'heart-outline'} number={123} />
-                        </View>
+                        <TouchableOpacity onPress={addFavorite} style={[styles.icon, styles.iconLeft]}>
+                            <Icon icon={iconFavorite} number={totalFavorite} />
+                        </TouchableOpacity>
                         <View style={[styles.icon, styles.iconRight]}>
-                            <Icon icon={'eye-outline'} number={123}/>
+                            <Icon icon={iconViewed} number={totalViewed}/>
                         </View>
                     </View>
                 </View>
@@ -30,33 +55,19 @@ const ProductScreen = ({ navigation }) => {
                     >
                     <View style={styles.background}>
                         <View style={styles.descTop}>
-                            <Text style={[styles.textSize, styles.textJustify]}>
-                                Pariatur consectetur ut quis cupidatat magna adipisicing cupidatat amet dolore velit. 
-                                Aute cillum consequat tempor adipisicing. 
-                                Deserunt proident adipisicing adipisicing nostrud dolore ex do est mollit.
-                            </Text>
+                            <Text style={[styles.textSize, styles.textJustify]}>{product.intro}</Text>
                         </View>
                         <View style={[styles.descMiddle, styles.flexBox]}>
                             <Text style={[styles.title, styles.borderBox]}>
                                 Nguyên liệu
                             </Text>
-                            <Text style={[styles.content, styles.textSize]}>
-                                Pariatur consectetur ut quis cupidatat 
-                                magna adipisicing cupidatat amet dolore velit
-                                Aute cillum consequat tempor adipisicing. 
-                                Deserunt proident adipisicing adipisicing nostrud dolore ex do est mollit.
-                            </Text>
+                            <Text style={[styles.content, styles.textSize]}>{product.ingredients}</Text>
                         </View>
                         <View style={styles.descBottom}>
                             <Text style={[styles.title, styles.borderBox]}>
                                 Cách thực hiện
                             </Text>
-                            <Text style={[styles.content, styles.textSize]}>
-                                Pariatur consectetur ut quis cupidatat 
-                                magna adipisicing cupidatat amet dolore velit
-                                Aute cillum consequat tempor adipisicing. 
-                                Deserunt proident adipisicing adipisicing nostrud dolore ex do est mollit.
-                            </Text>
+                            <Text style={[styles.content, styles.textSize]}>{product.instructions}</Text>
                         </View>
                     </View>
                 </ImageBackground>

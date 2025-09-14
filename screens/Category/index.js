@@ -12,6 +12,7 @@ const CategoryScreen = ({ navigation, route }) => {
     const renderGridProduct = ({ item }) => {
         return (
             <FlatCategory
+                id = {item.id}
                 title = {item.title}
                 thumb = {item.thumb}
                 favorite = {item.favorite}
@@ -35,6 +36,7 @@ const CategoryScreen = ({ navigation, route }) => {
                     data={productData}
                     keyExtractor={item => item.id}
                     renderItem={renderGridProduct}
+                    ListEmptyComponent={() => <Text>Chưa có sản phẩm</Text>}
                 />
             </View>
         </View>
